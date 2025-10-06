@@ -17,8 +17,22 @@ public class DynamicArrayDemo {
 
         o.print();
         System.out.println();
-        System.out.println(o.getByIndex(0));
-        System.out.println(o.getByIndex(7));
-        System.out.println(o.getByIndex(21));
+        o.deleteByIndex(3);
+        o.print();
+
+        System.out.println();
+
+        o.set(7, 77);
+        o.print();
+
+        System.out.println();
+
+        o.add(5, 0);
+        o.print();
+
+        System.out.println();
+
+        System.out.println(o.exists(77));
+        System.out.println(o.getIndexByValue(0));
     }
 }
