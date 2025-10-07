@@ -17,6 +17,7 @@ public class DynamicArrayDemo {
 
         o.print();
         System.out.println();
+
         o.deleteByIndex(3);
         o.print();
 
@@ -33,6 +34,6 @@ public class DynamicArrayDemo {
         System.out.println();
 
         System.out.println(o.exists(77));
-        System.out.println(o.getIndexByValue(0));
+        System.out.println(o.getIndexByValue(77));
     }
 }

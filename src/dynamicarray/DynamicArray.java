@@ -38,14 +38,9 @@ public class DynamicArray {
             System.out.println("Index out of range");
             return;
         }
-        int[] temp = new int[array.length];
-        for (int i = 0; i < index; i++) {
-            temp[i] = array[i];
+        for (int i = index; i < size - 1; i++) {
+            array[i] = array[i + 1];
         }
-        for (int i = index + 1; i < size; i++) {
-            temp[i - 1] = array[i];
-        }
-        array = temp;
         size--;
     }
 
@@ -61,16 +56,10 @@ public class DynamicArray {
             System.out.println("Index out of range");
             return;
         }
-        ;
-        int[] temp = new int[array.length + 1];
-        for (int i = 0; i < index; i++) {
-            temp[i] = array[i];
+        for (int i = size; i > index; i--) {
+            array[i] = array[i - 1];
         }
-        temp[index] = value;
-        for (int i = index; i < array.length; i++) {
-            temp[i + 1] = array[i];
-        }
-        array = temp;
+        array[index] = value;
         size++;
     }
 
