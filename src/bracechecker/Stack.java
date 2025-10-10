@@ -4,6 +4,10 @@ public class Stack {
     private char[] array = new char[10];
     private int tos;
 
+    public Stack(){
+        tos = -1;
+    }
+
     public void push(char value){
         if (tos == array.length - 1) {
             System.out.println("Stack is full");
