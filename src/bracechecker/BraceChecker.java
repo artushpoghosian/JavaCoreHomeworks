@@ -36,6 +36,10 @@ public class BraceChecker{
                     } else {
                         System.out.println("ERROR! Opened " + tos + " but closed " + temp + " at position " + i);
                     }
+
+                    int last;
+                    while ((last = stack.pop()) != 0)
+                        System.out.println("ERROR! Opened " + (char) last + " but never was closed");
                     break;
             }
         }
