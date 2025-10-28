@@ -26,17 +26,26 @@ public class EmployeeDemo implements Commands{
                     employeeStorage.print();
                     break;
                 case SEARCH_EMPLOYEE_BY_EMPLOYEEID:
-                    System.out.println("Enter the Employee ID");
-                    String employeeID = sc.nextLine();
-                    employeeStorage.searchEmployeeByEmployeeID(employeeID);
+                    searchEmployeeByEmployeeID();
                     break;
                 case SEARCH_EMPLOYEE_BY_COMPANY_NAME:
-                    System.out.println("Enter the Company Name");
-                    String companyName = sc.nextLine();
-                    employeeStorage.searchEmployeeByCompany(companyName);
+                    searchEmployeeByCompany();
                     break;
             }
         }
+    }
+
+    private static void searchEmployeeByCompany() {
+        System.out.println("Enter the Company Name");
+        String companyName = sc.nextLine();
+        employeeStorage.searchEmployeeByCompany(companyName);
+    }
+
+    private static void searchEmployeeByEmployeeID() {
+        System.out.println("Enter the Employee ID");
+        employeeStorage.print();
+        String employeeID = sc.nextLine();
+        employeeStorage.searchEmployeeByEmployeeID(employeeID);
     }
 
     private static void addEmployee() {

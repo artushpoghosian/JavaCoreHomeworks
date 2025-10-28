@@ -25,16 +25,30 @@ public class EmployeeStorage {
     }
 
     public void searchEmployeeByEmployeeID(String employeeID) {
+        boolean found = false;
         for (int i = 0; i < size; i++) {
-            if(employees[i].getEmployeeId().equals(employeeID))
+            if(employees[i].getEmployeeId().equals(employeeID)) {
                 System.out.println(employees[i]);
+                found = true;
+                break;
+            }
+        }
+        if(!found){
+            System.out.println("Wrong Employee ID. Try again.");
         }
     }
 
     public void searchEmployeeByCompany(String Company) {
+        boolean found = false;
         for (int i = 0; i < size; i++) {
-            if(employees[i].getCompany().equals(Company))
+            if(employees[i].getCompany().equals(Company)) {
                 System.out.println(employees[i]);
+                found = true;
+                break;
+            }
+        }
+        if(!found){
+            System.out.println("Wrong Company Name. Try again.");
         }
     }
 }
