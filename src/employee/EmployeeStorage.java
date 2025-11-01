@@ -1,5 +1,8 @@
 package employee;
 
+import employee.exception.CompanyNotFoundException;
+import employee.exception.EmployeeNotFoundException;
+
 public class EmployeeStorage {
 
     private Employee[] employees = new Employee[20];
@@ -24,7 +27,7 @@ public class EmployeeStorage {
         }
     }
 
-    public void searchEmployeeByEmployeeID(String employeeID) {
+    public void searchEmployeeByEmployeeID(String employeeID) throws EmployeeNotFoundException {
         boolean found = false;
         for (int i = 0; i < size; i++) {
             if(employees[i].getEmployeeId().equals(employeeID)) {
@@ -34,11 +37,11 @@ public class EmployeeStorage {
             }
         }
         if(!found){
-            System.out.println("Wrong Employee ID. Try again.");
+            throw new EmployeeNotFoundException("Employee not found");
         }
     }
 
-    public void searchEmployeeByCompany(String Company) {
+    public void searchEmployeeByCompany(String Company) throws CompanyNotFoundException {
         boolean found = false;
         for (int i = 0; i < size; i++) {
             if(employees[i].getCompany().equals(Company)) {
@@ -48,7 +51,7 @@ public class EmployeeStorage {
             }
         }
         if(!found){
-            System.out.println("Wrong Company Name. Try again.");
+            throw new CompanyNotFoundException("Company not found");
         }
     }
 }

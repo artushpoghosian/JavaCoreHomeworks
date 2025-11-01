@@ -1,8 +1,11 @@
 package employee;
 
+import employee.exception.CompanyNotFoundException;
+import employee.exception.EmployeeNotFoundException;
+
 import java.util.Scanner;
 
-public class EmployeeDemo implements Commands{
+public class EmployeeDemo implements Commands {
 
     private static Scanner sc = new Scanner(System.in);
     private static EmployeeStorage employeeStorage = new EmployeeStorage();
@@ -10,7 +13,7 @@ public class EmployeeDemo implements Commands{
     public static void main(String[] args) {
         boolean isRunning = true;
 
-        while(isRunning){
+        while (isRunning) {
             Commands.printCommands();
             String command = sc.nextLine();
 
@@ -38,15 +41,24 @@ public class EmployeeDemo implements Commands{
     private static void searchEmployeeByCompany() {
         System.out.println("Enter the Company Name");
         String companyName = sc.nextLine();
-        employeeStorage.searchEmployeeByCompany(companyName);
+        try {
+            employeeStorage.searchEmployeeByCompany(companyName);
+        } catch (CompanyNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void searchEmployeeByEmployeeID() {
         System.out.println("Enter the Employee ID");
         employeeStorage.print();
         String employeeID = sc.nextLine();
-        employeeStorage.searchEmployeeByEmployeeID(employeeID);
+        try {
+            employeeStorage.searchEmployeeByEmployeeID(employeeID);
+        } catch (EmployeeNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
+
 
     private static void addEmployee() {
         System.out.println("Enter Employee Name");
@@ -61,7 +73,7 @@ public class EmployeeDemo implements Commands{
         String company = sc.nextLine();
         System.out.println("Enter Employee's Position");
         String position = sc.nextLine();
-        Employee employee = new Employee(name, surname, employeeID, salary,company, position);
+        Employee employee = new Employee(name, surname, employeeID, salary, company, position);
         employeeStorage.add(employee);
         System.out.println("The employee was added successfully.");
     }
