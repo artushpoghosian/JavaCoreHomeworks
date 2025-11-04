@@ -9,7 +9,7 @@ public class Employee {
     private String employeeID;
     private double salary;
     private String company;
-    private String position;
+    private PositionLevel position;
 
     public Employee(String name, String surname, String employeeID, double salary, String company, String position) {
         this.name = name;
@@ -17,7 +17,7 @@ public class Employee {
         this.employeeID = employeeID;
         this.salary = salary;
         this.company = company;
-        this.position = position;
+        this.position = PositionLevel.valueOf(position);
     }
 
     public Employee() {
@@ -63,11 +63,11 @@ public class Employee {
         this.company = company;
     }
 
-    public String getPosition() {
+    public PositionLevel getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(PositionLevel position) {
         this.position = position;
     }
 
@@ -75,7 +75,7 @@ public class Employee {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Double.compare(salary, employee.salary) == 0 && Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname) && Objects.equals(employeeID, employee.employeeID) && Objects.equals(company, employee.company) && Objects.equals(position, employee.position);
+        return Double.compare(salary, employee.salary) == 0 && Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname) && Objects.equals(employeeID, employee.employeeID) && Objects.equals(company, employee.company) && position == employee.position;
     }
 
     @Override

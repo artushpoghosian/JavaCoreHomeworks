@@ -2,6 +2,7 @@ package employee;
 
 import employee.exception.CompanyNotFoundException;
 import employee.exception.EmployeeNotFoundException;
+import employee.exception.PositionLevelNotFoundException;
 
 public class EmployeeStorage {
 
@@ -52,6 +53,20 @@ public class EmployeeStorage {
         }
         if(!found){
             throw new CompanyNotFoundException("Company not found");
+        }
+    }
+
+    public void searchEmployeeByPositionLevel(String positionLevel) throws PositionLevelNotFoundException, IllegalArgumentException {
+        boolean found = false;
+        for (int i = 0; i < size; i++) {
+            if(employees[i].getPosition() == PositionLevel.valueOf(positionLevel)) {
+                System.out.println(employees[i]);
+                found = true;
+                break;
+            }
+        }
+        if(!found){
+            throw new PositionLevelNotFoundException("No Employees with the '" + positionLevel + "' Position was found");
         }
     }
 }

@@ -2,6 +2,7 @@ package employee;
 
 import employee.exception.CompanyNotFoundException;
 import employee.exception.EmployeeNotFoundException;
+import employee.exception.PositionLevelNotFoundException;
 
 import java.util.Scanner;
 
@@ -34,7 +35,22 @@ public class EmployeeDemo implements Commands {
                 case SEARCH_EMPLOYEE_BY_COMPANY_NAME:
                     searchEmployeeByCompany();
                     break;
+                case SEARCH_EMPLOYEE_BY_POSITION_LEVEL:
+                    searchEmployeeByPositionLevel();
+                    break;
             }
+        }
+    }
+
+    private static void searchEmployeeByPositionLevel() {
+        System.out.println("Enter the Position Level Name to view all the employees at that Position Level");
+        String positionLevel = sc.nextLine();
+        try {
+            employeeStorage.searchEmployeeByPositionLevel(positionLevel);
+        } catch (PositionLevelNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid Position Level Representation. Please choose from: JUNIOR, MIDDLE, SENIOR, LEAD");
         }
     }
 
