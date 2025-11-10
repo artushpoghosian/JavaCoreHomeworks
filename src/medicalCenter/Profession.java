@@ -1,0 +1,5 @@
+package medicalCenter;
+
+public enum Profession {
+    OPHTHALMOLOGIST, OTOLARYNGOLOGIST, CARDIOLOGIST, DERMATOLOGIST, ORTHOPEDIC_SURGEON;
+}
