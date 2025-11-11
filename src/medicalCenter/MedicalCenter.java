@@ -9,8 +9,6 @@ import medicalCenter.patient.PatientStorage;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -19,8 +17,6 @@ public class MedicalCenter implements Commands {
     private static Scanner sc = new Scanner(System.in);
     private static DoctorStorage doctorStorage = new DoctorStorage();
     private static PatientStorage patientStorage = new PatientStorage();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    LocalDate registrationDate = null;
 
     public static void main(String[] args) {
         boolean isRunning = true;
@@ -159,39 +155,26 @@ public class MedicalCenter implements Commands {
         String doctorId = sc.nextLine();
         try {
             doctor = doctorStorage.getByID(doctorId);
+            System.out.println("Enter Patient Name:");
+            String name = sc.nextLine();
+
+            System.out.println("Enter Patient Surname:");
+            String surname = sc.nextLine();
+
+            System.out.println("Enter Patient ID:");
+            String id = sc.nextLine();
+
+            System.out.println("Enter Patient's Phone Number:");
+            String phoneNumber = sc.nextLine();
+
+            Date registrationDate = DateUtil.readDateFromInput(sc);
+
+            Patient patient = new Patient(name, surname, id, phoneNumber, doctor, registrationDate);
+            patientStorage.add(patient);
+            System.out.println("The Patient was added successfully.");
         } catch (IllegalIDException e) {
             System.out.println(e.getMessage());
-            addPatient();
         }
-
-        System.out.println("Enter Patient Name:");
-        String name = sc.nextLine();
-
-        System.out.println("Enter Patient Surname:");
-        String surname = sc.nextLine();
-
-        System.out.println("Enter Patient ID:");
-        String id = sc.nextLine();
-
-        System.out.println("Enter Patient's Phone Number:");
-        String phoneNumber = sc.nextLine();
-
-        System.out.println("Enter The Registration Date (dd-MM-yyyy):");
-        Date registrationDate = null;
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        formatter.setLenient(false);
-        while (registrationDate == null) {
-            String dateInput = sc.nextLine();
-            try {
-                registrationDate = formatter.parse(dateInput);
-            } catch (ParseException e) {
-                System.out.println("Invalid date format. Please enter in dd-MM-yyyy format:");
-            }
-        }
-
-        Patient patient = new Patient(name, surname, id, phoneNumber, doctor, registrationDate);
-        patientStorage.add(patient);
-        System.out.println("The Patient was added successfully.");
     }
 
     private static void printAllPatientsByDoctor() {
