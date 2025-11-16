@@ -1,4 +1,4 @@
-package medicalCenter;
+package medicalCenter.util;
 
 public interface Commands {
     String EXIT = "0";

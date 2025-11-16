@@ -4,7 +4,9 @@ import medicalCenter.Profession;
 import medicalCenter.exception.IllegalIDException;
 import medicalCenter.exception.ProfessionNotFoundException;
 
-public class DoctorStorage {
+import java.io.Serializable;
+
+public class DoctorStorage implements Serializable {
 
     private Doctor[] doctors = new Doctor[25];
     private int size = 0;

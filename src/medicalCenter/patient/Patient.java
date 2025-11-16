@@ -2,11 +2,13 @@ package medicalCenter.patient;
 
 import medicalCenter.Person;
 import medicalCenter.doctor.Doctor;
+import medicalCenter.util.DateUtil;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Patient extends Person {
+public class Patient extends Person implements Serializable {
 
     private Doctor doctor;
     private Date registrationDate;
@@ -54,7 +56,7 @@ public class Patient extends Person {
     public String toString() {
         return "Patient{" + super.toString() +
                 "doctor=" + doctor +
-                ", registrationDate=" + registrationDate +
+                ", registrationDate=" + DateUtil.fromDateToString(registrationDate) +
                 '}';
     }
 }

@@ -2,7 +2,9 @@ package medicalCenter.patient;
 
 import medicalCenter.doctor.Doctor;
 
-public class PatientStorage {
+import java.io.Serializable;
+
+public class PatientStorage implements Serializable {
     private Patient[] patients = new Patient[50];
     private int size = 0;
 

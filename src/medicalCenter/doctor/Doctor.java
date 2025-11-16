@@ -3,9 +3,10 @@ package medicalCenter.doctor;
 import medicalCenter.Person;
 import medicalCenter.Profession;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Doctor extends Person {
+public class Doctor extends Person implements Serializable {
 
     private Profession profession;
     private String email;

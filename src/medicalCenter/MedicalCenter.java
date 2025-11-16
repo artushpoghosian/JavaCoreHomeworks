@@ -6,6 +6,8 @@ import medicalCenter.exception.IllegalIDException;
 import medicalCenter.exception.ProfessionNotFoundException;
 import medicalCenter.patient.Patient;
 import medicalCenter.patient.PatientStorage;
+import medicalCenter.util.Commands;
+import medicalCenter.util.FileUtil;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -13,8 +15,8 @@ import java.util.Scanner;
 public class MedicalCenter implements Commands {
 
     private static Scanner sc = new Scanner(System.in);
-    private static DoctorStorage doctorStorage = new DoctorStorage();
-    private static PatientStorage patientStorage = new PatientStorage();
+    private static DoctorStorage doctorStorage = FileUtil.deserializeDoctorData();
+    private static PatientStorage patientStorage = FileUtil.deserializePatientData();
 
     public static void main(String[] args) {
         boolean isRunning = true;
@@ -30,18 +32,22 @@ public class MedicalCenter implements Commands {
                     break;
                 case ADD_DOCTOR:
                     addDoctor();
+                    FileUtil.serializeDoctorData(doctorStorage);
                     break;
                 case SEARCH_DOCTOR_BY_PROFESSION:
                     searchDoctorByProfession();
                     break;
                 case DELETE_DOCTOR_BY_ID:
                     deleteDoctorById();
+                    FileUtil.serializeDoctorData(doctorStorage);
                     break;
                 case CHANGE_DOCTOR_BY_ID:
                     changeDoctorById();
+                    FileUtil.serializeDoctorData(doctorStorage);
                     break;
                 case ADD_PATIENT:
                     addPatient();
+                    FileUtil.serializePatientData(patientStorage);
                     break;
                 case PRINT_ALL_PATIENTS_BY_DOCTOR:
                     printAllPatientsByDoctor();
@@ -165,9 +171,7 @@ public class MedicalCenter implements Commands {
             System.out.println("Enter Patient's Phone Number:");
             String phoneNumber = sc.nextLine();
 
-            Date registrationDate = DateUtil.readDateFromInput(sc);
-
-            Patient patient = new Patient(name, surname, id, phoneNumber, doctor, registrationDate);
+            Patient patient = new Patient(name, surname, id, phoneNumber, doctor, new Date());
             patientStorage.add(patient);
             System.out.println("The Patient was added successfully.");
         } catch (IllegalIDException e) {
